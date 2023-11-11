@@ -1,20 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace DataAccess;
 
-namespace DataAccess
+public class FamilyBudgetDbContext : DbContext
 {
-    public class FamilyBudgetDbContext : DbContext
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        public CatalogContext CreateDbContext(string[] args)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<CatalogContext>()
-                .UseSqlServer("Server=.;Initial Catalog=Microsoft.eShopOnContainers.Services.CatalogDb;Integrated Security=true");
-
-            return new CatalogContext(optionsBuilder.Options);
-        }
+        // Configure the database connection
+        optionsBuilder.UseSqlServer("your_connection_string_here");
     }
 }

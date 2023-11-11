@@ -2,13 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccess.EntityConfigurations
+namespace DataAccess.EntityConfigurations;
+
+public class IncomeEntityTypeConfiguration : IEntityTypeConfiguration<Income>
 {
-    public class IncomeEntityTypeConfiguration : IEntityTypeConfiguration<Income>
+    public void Configure(EntityTypeBuilder<Income> builder)
     {
-        public void Configure(EntityTypeBuilder<Income> builder)
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }
