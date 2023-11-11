@@ -10,11 +10,10 @@ public class FamilyBudgetDbContext : DbContext
     public DbSet<Income> Incomes { get; set; }
     public DbSet<IncomeCategory> IncomeCategories { get; set; }
     public DbSet<User> Users { get; set; }
-    public DbSet<UserExpense> UserExpenses { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // Configure the database connection
-        optionsBuilder.UseSqlServer("Server=.;Initial Catalog=Microsoft.eShopOnContainers.Services.CatalogDb;Integrated Security=true");
+        optionsBuilder.UseSqlServer("Server=.;Initial Catalog=FamilyBudget;Integrated Security=true");
     }
 }

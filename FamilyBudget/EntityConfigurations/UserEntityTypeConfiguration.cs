@@ -7,6 +7,24 @@ public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        throw new NotImplementedException();
+        builder.HasKey(u => u.UserId);
+
+        builder.Property(u => u.UserName)
+            .IsRequired();
+
+        builder
+            .HasMany(u => u.UserExpenses)
+            .WithOne(e => e.User)
+            .HasForeignKey(e => e.UserId);
+
+        builder
+            .HasMany(u => u.Incomes)
+            .WithOne(i => i.User)
+            .HasForeignKey(i => i.UserId);
+
+        builder
+            .HasMany(u => u.SharedExpenses)
+            .WithOne(se => se.SharingUser)
+            .HasForeignKey(se => se.SharingUserId);
     }
 }

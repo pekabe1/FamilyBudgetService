@@ -10,14 +10,34 @@ public class ExpenseEntityTypeConfiguration : IEntityTypeConfiguration<Expense>
     {
         builder.ToTable("Expense");
 
-        builder.HasKey(ex => ex.Id);
+        builder.HasKey(e => e.Id);
 
-        builder.Property(ex => ciexId)
-            .UseHiLo("catalog_brand_hilo")
+        builder.Property(e => e.Id)
+          .UseHiLo("expense_hilo")
+          .IsRequired();
+
+        builder.Property(e => e.Description)
             .IsRequired();
 
-        builder.Property(cb => cb.Brand)
-            .IsRequired()
-            .HasMaxLength(100);
+        builder.Property(e => e.Amount)
+            .IsRequired();
+
+        builder.Property(e => e.ExpenseDate)
+            .IsRequired();
+
+        builder
+            .HasOne(e => e.User)
+            .WithMany(u => u.UserExpenses)
+            .HasForeignKey(e => e.UserId);
+
+        builder
+            .HasMany(e => e.SharedWith)
+            .WithOne(se => se.Expense)
+            .HasForeignKey(se => se.ExpenseId);
+
+        builder
+            .HasOne(e => e.ExpenseCategory)
+            .WithMany()
+            .HasForeignKey(e => e.ExpenseCategoryId);
     }
 }

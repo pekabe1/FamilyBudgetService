@@ -8,6 +8,15 @@ public class ExpenseCategoryEntityTypeConfiguration : IEntityTypeConfiguration<E
 {
     public void Configure(EntityTypeBuilder<ExpenseCategory> builder)
     {
-        throw new NotImplementedException();
+        builder.ToTable("ExpenseCategory");
+
+        builder.HasKey(ec => ec.Id);
+
+        builder.Property(ec => ec.Id)
+          .UseHiLo("expense_category_hilo")
+          .IsRequired();
+
+        builder.Property(ec => ec.Name)
+            .IsRequired();
     }
 }

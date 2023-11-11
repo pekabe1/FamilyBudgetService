@@ -3,10 +3,12 @@
 public class SharedExpense
 {
     public int Id { get; set; }
-
+    
+    // Foreign key for the User
     public int SharingUserId { get; set; }
     public User SharingUser { get; set; }
 
+    // Foreign key for the Expense
     public int ExpenseId { get; set; }
     public Expense Expense { get; set; }
 }

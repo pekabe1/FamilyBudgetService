@@ -8,6 +8,15 @@ public class IncomeCategoryEntityTypeConfiguration : IEntityTypeConfiguration<In
 {
     public void Configure(EntityTypeBuilder<IncomeCategory> builder)
     {
-        throw new NotImplementedException();
+        builder.ToTable("IncomeCategory");
+
+        builder.HasKey(ec => ec.Id);
+
+        builder.Property(ec => ec.Id)
+          .UseHiLo("income_category_hilo")
+          .IsRequired();
+
+        builder.Property(ec => ec.Name)
+            .IsRequired();
     }
 }
