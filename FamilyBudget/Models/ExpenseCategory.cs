@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models
 {
-    public class Income
+    public class ExpenseCategory
     {
         public int Id { get; protected set; }
         public string Name { get; protected set; }

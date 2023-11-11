@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.EntityConfigurations;
 
-public class ExpenseTypeEntityTypeConfiguration : IEntityTypeConfiguration<Income>
+public class IncomeCategoryEntityTypeConfiguration : IEntityTypeConfiguration<IncomeCategory>
 {
-    public void Configure(EntityTypeBuilder<Income> builder)
+    public void Configure(EntityTypeBuilder<IncomeCategory> builder)
     {
         throw new NotImplementedException();
     }
