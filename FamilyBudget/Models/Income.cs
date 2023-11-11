@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models
 {
-    internal class Income
+    public class Income
     {
+        public int Id { get; protected set; }
+        public decimal Amount { get; protected set; }
     }
 }

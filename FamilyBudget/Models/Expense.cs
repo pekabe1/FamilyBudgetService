@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models
 {
-    internal class Expense
+    public class Expense
     {
+        public int ExpenseId { get; protected set; }
+        public string Description { get; protected set; }
+        public decimal Amount { get; protected set; }
+        public DateTime ExpenseDate { get; protected set; }
+
+        // Foreign key for the expense type
+        public Income ExpenseType { get; protected set; }
+        public int ExpenseTypeId { get; protected set; }
+
+        // Foreign key for the user who made the expense
+        public int UserId { get; protected set; }
+        public User User { get; protected set; }
     }
 }

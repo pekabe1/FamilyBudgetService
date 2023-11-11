@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models
 {
-    internal class ExpenseType
+    public class Income
     {
+        public int Id { get; protected set; }
+        public string Name { get; protected set; }
     }
 }
