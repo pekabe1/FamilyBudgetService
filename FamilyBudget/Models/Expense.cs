@@ -14,7 +14,7 @@ namespace DataAccess.Models
         public DateTime ExpenseDate { get; protected set; }
 
         // Foreign key for the expense type
-        public Income ExpenseType { get; protected set; }
+        public ExpenseCategory ExpenseCategory { get; protected set; }
         public int ExpenseTypeId { get; protected set; }
 
         // Foreign key for the user who made the expense
