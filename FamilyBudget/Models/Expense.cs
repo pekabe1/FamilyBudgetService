@@ -8,7 +8,7 @@ namespace DataAccess.Models
 {
     public class Expense
     {
-        public int ExpenseId { get; protected set; }
+        public int Id { get; protected set; }
         public string Description { get; protected set; }
         public decimal Amount { get; protected set; }
         public DateTime ExpenseDate { get; protected set; }
@@ -20,5 +20,8 @@ namespace DataAccess.Models
         // Foreign key for the user who made the expense
         public int UserId { get; protected set; }
         public User User { get; protected set; }
+
+        // Navigation property for shared expenses
+        public List<SharedExpense> SharedWith { get; set; }
     }
 }

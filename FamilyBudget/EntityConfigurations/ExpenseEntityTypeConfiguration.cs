@@ -8,6 +8,16 @@ public class ExpenseEntityTypeConfiguration : IEntityTypeConfiguration<Expense>
 {
     public void Configure(EntityTypeBuilder<Expense> builder)
     {
-        throw new NotImplementedException();
+        builder.ToTable("Expense");
+
+        builder.HasKey(ex => ex.Id);
+
+        builder.Property(ex => ciexId)
+            .UseHiLo("catalog_brand_hilo")
+            .IsRequired();
+
+        builder.Property(cb => cb.Brand)
+            .IsRequired()
+            .HasMaxLength(100);
     }
 }
