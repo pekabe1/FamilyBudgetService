@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "FamilyBudget\DataAccess.csproj", "{44C0D0E5-4708-4639-8420-EB270C1F18F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "FamilyBudget\DataAccess.csproj", "{44C0D0E5-4708-4639-8420-EB270C1F18F5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{07EAF821-9F15-403E-9252-68ACF9D23D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyBudgetService", "FamilyBudgetService\FamilyBudgetService.csproj", "{45028877-DE19-440A-8D65-8C7C21567377}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyBudgetService", "FamilyBudgetService\FamilyBudgetService.csproj", "{45028877-DE19-440A-8D65-8C7C21567377}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessTests", "DataAccessTests\DataAccessTests.csproj", "{F59BE6E8-9D27-434B-8CD3-7124B0BA4466}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyBudgetServiceTests", "FamilyBudgetServiceTests\FamilyBudgetServiceTests.csproj", "{F216B5BD-860D-4C27-A766-A6897944B871}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,9 +27,21 @@ Global
 		{45028877-DE19-440A-8D65-8C7C21567377}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45028877-DE19-440A-8D65-8C7C21567377}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45028877-DE19-440A-8D65-8C7C21567377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F59BE6E8-9D27-434B-8CD3-7124B0BA4466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F59BE6E8-9D27-434B-8CD3-7124B0BA4466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F59BE6E8-9D27-434B-8CD3-7124B0BA4466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F59BE6E8-9D27-434B-8CD3-7124B0BA4466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F216B5BD-860D-4C27-A766-A6897944B871}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F216B5BD-860D-4C27-A766-A6897944B871}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F216B5BD-860D-4C27-A766-A6897944B871}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F216B5BD-860D-4C27-A766-A6897944B871}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F59BE6E8-9D27-434B-8CD3-7124B0BA4466} = {07EAF821-9F15-403E-9252-68ACF9D23D90}
+		{F216B5BD-860D-4C27-A766-A6897944B871} = {07EAF821-9F15-403E-9252-68ACF9D23D90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48E50ACE-5029-46AF-8733-1C74A2686321}
