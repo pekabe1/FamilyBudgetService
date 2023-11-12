@@ -13,15 +13,15 @@ namespace FamilyBudgetService.Api.Mappers
                 Amount = expense.Amount,
                 Description = expense.Description,
                 ExpenseCategoryId = expense.ExpenseCategoryId,
-                ExpenseCategoryResponse = expense.ExpenseCategory.MapToResponse(),
+                ExpenseCategoryResponse = expense.ExpenseCategory != null ? expense.ExpenseCategory.MapToResponse() : null,
                 ExpenseDate = expense.ExpenseDate,
                 UserId = expense.UserId,
                 User = expense.User.MapToResponse(),
                 Id = expense.Id,
             };
         }
-            
-        public static IEnumerable<ExpenseResponse> MapToResponse(this IEnumerable<Expense> expenses) 
+
+        public static IEnumerable<ExpenseResponse> MapToResponse(this IEnumerable<Expense> expenses)
         {
             return expenses.Select(MapToResponse);
         }

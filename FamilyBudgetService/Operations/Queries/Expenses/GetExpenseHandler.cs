@@ -8,6 +8,7 @@ namespace FamilyBudgetService.Api.Operations.Queries.Expenses
     public class GetExpenseHandler : IRequestHandler<GetExpensesQuery, Result<PaginatedList<ExpenseResponse>>>
     {
         private readonly IExpenseQueryService _expenseQueryService;
+        
         public GetExpenseHandler(IExpenseQueryService expenseQueryService)
         {
             _expenseQueryService = expenseQueryService;

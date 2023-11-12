@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using System.Reflection;
+using FamilyBudgetService.Api.QueryServices.V1.Expenses;
+using DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddDbContext<FamilyBudgetDbContext>(options =>
+{
+    options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=FamilyBudget;Trusted_Connection=True;MultipleActiveResultSets=true");
+});
+
+builder.Services.AddTransient<IExpenseQueryService, ExpenseQueryService>();
+builder.Services.AddTransient<IExpenseQueryService, ExpenseQueryService>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
@@ -22,6 +33,8 @@ builder.Services.AddAuthorization(options =>
 });
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

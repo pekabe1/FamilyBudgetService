@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using DataAccess.Models;
 using FamilyBudgetService.Api.Operations.Queries.Expenses;
+using Microsoft.EntityFrameworkCore;
 
 namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
 {
@@ -15,13 +16,15 @@ namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
 
         public async Task<PartialResult<Expense>> GetExpenses(GetExpensesQuery expenseQuery, CancellationToken cancellation = default)
         {
-            IQueryable<Expense> query = _dbContext.Expenses;
+            IQueryable<Expense> query = _dbContext.Expenses
+                .Include(i => i.User)
+                .Include(i=> i.ExpenseCategory);// TODO: Should I restrict data to non nested subscolections ?
 
             if (expenseQuery.Id != null)
             {
                 query = query.Where(p => p.Id == expenseQuery.Id);
             }
-            if (string.IsNullOrEmpty(expenseQuery.Description))
+            if (!string.IsNullOrEmpty(expenseQuery.Description))
             {
                 query = query.Where(p => p.Description == expenseQuery.Description);
             }

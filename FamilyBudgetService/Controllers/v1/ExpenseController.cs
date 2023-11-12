@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using FamilyBudgetService.Api.Contracts;
+﻿using FamilyBudgetService.Api.Contracts;
 using FamilyBudgetService.Api.Contracts.v1.Expense;
 using FamilyBudgetService.Api.Filters;
 using FamilyBudgetService.Api.Operations.Queries.Expenses;
