@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace DataAccess.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
+        
+        [Precision(18, 2)]
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
         

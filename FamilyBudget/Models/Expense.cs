@@ -1,9 +1,13 @@
-﻿namespace DataAccess.Models;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace DataAccess.Models;
 
 public class Expense
 {
     public int Id { get; protected set; }
     public string Description { get; protected set; }
+    
+    [Precision(18, 2)]
     public decimal Amount { get; protected set; }
     public DateTime ExpenseDate { get; protected set; }
 
