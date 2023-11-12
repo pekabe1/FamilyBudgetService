@@ -22,10 +22,11 @@ namespace FamilyBudgetService.Api.Controllers.v1
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpGet("expenses")]
         [ProducesResponseType(typeof(FamilyBudgetServiceCollectionResponse<ExpenseResponse>), StatusCodes.Status200OK)]
         [Produces(MediaTypeNames.Application.Json)]
-        public async Task<IActionResult> GetExpensesAsync([FromQuery] ExpenseFilteringRequest request)
+        public async Task<IActionResult> GetExpensesAsync([FromQuery] GetExpenseRequest request)
         {
             var query = new GetExpensesQuery
             {
@@ -36,7 +37,10 @@ namespace FamilyBudgetService.Api.Controllers.v1
             return result.Match(Ok, HandleResultError);
         }
 
+        [Authorize]
         [HttpGet("expenses/{id}")]
+        [ProducesResponseType(typeof(ExpenseResponse), StatusCodes.Status200OK)]
+        [Produces(MediaTypeNames.Application.Json)]
         public async Task<IActionResult> GetExpenseAsync(int id)
         {
             var query = new GetExpensesQuery()
@@ -48,6 +52,7 @@ namespace FamilyBudgetService.Api.Controllers.v1
             return result.Match(Ok, HandleResultError);
         }
 
+        [Authorize]
         [HttpGet("expenses/filter")]
         [ProducesResponseType(typeof(FamilyBudgetServiceCollectionResponse<ExpenseResponse>), StatusCodes.Status200OK)]
         [Produces(MediaTypeNames.Application.Json)]
@@ -71,19 +76,28 @@ namespace FamilyBudgetService.Api.Controllers.v1
             return result.Match(Ok, HandleResultError);
         }
 
-        [HttpPost]
-        public IActionResult CreateExpense([FromBody] CreateExpenseRequest request)
+        [Authorize]
+        [HttpPost("expenses")]
+        [ProducesResponseType(typeof(ExpenseResponse), StatusCodes.Status201Created)]
+        [Produces(MediaTypeNames.Application.Json)]
+ 
+        public IActionResult CreateExpense([FromQuery] CreateExpenseRequest request)
         {
             throw new NotImplementedException();
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateExpense(int id, [FromBody] UpdateExpenseRequest request)
+        [HttpPut("expenses/{id}")]
+
+        [ProducesResponseType(typeof(ExpenseResponse), StatusCodes.Status200OK)]
+        [Produces(MediaTypeNames.Application.Json)]
+        public IActionResult UpdateExpense(int id, [FromQuery] UpdateExpenseRequest request)
         {
             throw new NotImplementedException();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("expenses/{id}")]
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(typeof(ExpenseResponse), StatusCodes.Status202Accepted)]
         public IActionResult DeleteExpense(int id)
         {
             throw new NotImplementedException();

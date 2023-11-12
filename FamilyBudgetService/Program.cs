@@ -1,10 +1,34 @@
-using Microsoft.AspNetCore.Authentication.Negotiate;
 using System.Reflection;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using FamilyBudgetService.Api.QueryServices.v1.Expenses;
+using FamilyBudgetService.Api.CommandsServices.v1;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Jwt configuration starts here
+var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
+var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+ .AddJwtBearer(options =>
+ {
+     options.TokenValidationParameters = new TokenValidationParameters
+     {
+         ValidateIssuer = true,
+         ValidateAudience = true,
+         ValidateLifetime = true,
+         ValidateIssuerSigningKey = true,
+         ValidIssuer = jwtIssuer,
+         ValidAudience = jwtIssuer,
+         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+     };
+ });
+
 
 // Add services to the container.
 
@@ -20,11 +44,10 @@ builder.Services.AddDbContext<FamilyBudgetDbContext>(options =>
 });
 
 builder.Services.AddTransient<IExpenseQueryService, ExpenseQueryService>();
-builder.Services.AddTransient<IExpenseQueryService, ExpenseQueryService>();
+builder.Services.AddTransient<IExpenseCommandService, ExpenseCommandService>();
+
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
-builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-   .AddNegotiate();
 
 builder.Services.AddAuthorization(options =>
 {

@@ -16,7 +16,7 @@ namespace FamilyBudgetService.Api.Mappers
                 ExpenseCategoryResponse = expense.ExpenseCategory != null ? expense.ExpenseCategory.MapToResponse() : null,
                 ExpenseDate = expense.ExpenseDate,
                 UserId = expense.UserId,
-                User = expense.User.MapToResponse(),
+                User = expense.User != null ? expense.User.MapToResponse() : null,
                 Id = expense.Id,
             };
         }
