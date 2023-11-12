@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "FamilyBudget\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{07EAF821-9F15-403E-9252-68ACF9D23D90}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyBudgetService", "FamilyBudgetService\FamilyBudgetService.csproj", "{45028877-DE19-440A-8D65-8C7C21567377}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyBudgetService.Api", "FamilyBudgetService\FamilyBudgetService.Api.csproj", "{45028877-DE19-440A-8D65-8C7C21567377}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessTests", "DataAccessTests\DataAccessTests.csproj", "{F59BE6E8-9D27-434B-8CD3-7124B0BA4466}"
 EndProject

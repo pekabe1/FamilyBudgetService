@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FamilyBudgetService\FamilyBudgetService.csproj" />
+    <ProjectReference Include="..\FamilyBudgetService\FamilyBudgetService.Api.csproj" />
   </ItemGroup>
 
 </Project>
