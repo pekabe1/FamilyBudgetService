@@ -16,9 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\v1\Income\" />
-    <Folder Include="Contracts\v1\IncomeCategory\" />
-    <Folder Include="Contracts\v1\SharedExpense\" />
     <Folder Include="Contracts\v1\User\" />
   </ItemGroup>
 
