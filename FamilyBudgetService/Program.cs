@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using System.Reflection;
-using FamilyBudgetService.Api.QueryServices.V1.Expenses;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
+using FamilyBudgetService.Api.QueryServices.v1.Expenses;
 
 var builder = WebApplication.CreateBuilder(args);
 

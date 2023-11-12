@@ -1,27 +1,27 @@
-﻿using FamilyBudgetService.Api.Contracts.v1.Expense;
+﻿using DataAccess.Models;
+using FamilyBudgetService.Api.CommandsServices.v1;
+using FamilyBudgetService.Api.Contracts.v1.Expense;
 using FamilyBudgetService.Api.Mappers;
 
 using MediatR;
 
 namespace FamilyBudgetService.Api.Operations.Commands.Expenses.Create;
 
-public class CreateExpenseHandler : IRequestHandler<CreateExpenseQuery, Result<PaginatedList<ExpenseResponse>>>
+public class CreateExpenseHandler : IRequestHandler<CreateExpenseQuery, Result<ExpenseResponse>>
 {
+    private readonly IExpenseCommandService _expenseCommandService;
 
-
-    public CreateExpenseHandler(Icomm expenseQueryService)
+    public CreateExpenseHandler(IExpenseCommandService expenseCommandService)
     {
-        _expenseQueryService = expenseQueryService;
+        _expenseCommandService = expenseCommandService;
     }
 
-    public async Task<Result<PaginatedList<ExpenseResponse>>> Handle(CreateExpenseQuery request, CancellationToken cancellationToken)
-    {
-        var expenses = await _expenseQueryService.GetExpenses(request, cancellationToken);
 
-        return new PaginatedList<ExpenseResponse>(
-             expenses.MapToResponse(),
-             expenses.Page,
-             expenses.PageSize,
-             expenses.TotalCount);
+    public async Task<Result<ExpenseResponse>> Handle(CreateExpenseQuery request, CancellationToken cancellationToken)
+    {
+        var expense = await _expenseCommandService.CreateExpenseAsnyc(request, cancellationToken);
+
+        return expense.MapToResponse();
     }
 }
+

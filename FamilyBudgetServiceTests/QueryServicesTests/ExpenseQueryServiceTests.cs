@@ -2,7 +2,7 @@
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using FamilyBudgetService.Api.QueryServices.V1.Expenses;
+using FamilyBudgetService.Api.QueryServices.v1.Expenses;
 
 namespace DataAccessTests.QueryServicesTests;
 
@@ -36,7 +36,7 @@ public class ExpenseQueryServiceTests
         }
 
         // Act
-        var result = await expenseQueryService.GetExpenses(expenseQuery);
+        var result = await expenseQueryService.GetExpensesAsync(expenseQuery);
 
         // Assert
         Assert.NotNull(result);
