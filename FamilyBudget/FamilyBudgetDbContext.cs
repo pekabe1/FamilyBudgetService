@@ -33,6 +33,7 @@ public class FamilyBudgetDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // Configure the database connection
-        optionsBuilder.UseSqlServer("Data Source=localhost; Initial Catalog=FamilyBudget; User Id=test; Password=test1");
+        optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=FamilyBudget;Trusted_Connection=True;MultipleActiveResultSets=true");
     }
 }
+

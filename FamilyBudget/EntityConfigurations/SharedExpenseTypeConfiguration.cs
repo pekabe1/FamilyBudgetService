@@ -18,7 +18,8 @@ public class SharedExpenseEntityTypeConfiguration : IEntityTypeConfiguration<Sha
 
         builder.HasOne(se => se.SharingUser)
             .WithMany(u => u.SharedExpenses)
-            .HasForeignKey(se => se.SharingUserId);
+            .HasForeignKey(se => se.SharingUserId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         builder.HasOne(se => se.Expense)
             .WithMany(e => e.SharedWith)

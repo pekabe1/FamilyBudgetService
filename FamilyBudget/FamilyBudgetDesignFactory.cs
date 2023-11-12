@@ -19,7 +19,7 @@ namespace DataAccess
         public FamilyBudgetDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<FamilyBudgetDbContext>()
-             .UseSqlServer("Data Source=localhost; Initial Catalog=FamilyBudget; User Id=test; Password=test1");
+             .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=FamilyBudget;Trusted_Connection=True;MultipleActiveResultSets=true");
 
             return new FamilyBudgetDbContext(optionsBuilder.Options);
         }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(FamilyBudgetDbContext))]
-    [Migration("20231111233720_CreateModel")]
+    [Migration("20231112010821_CreateModel")]
     partial class CreateModel
     {
         /// <inheritdoc />
@@ -25,13 +25,28 @@ namespace DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.HasSequence("expense_category_hilo")
+                .IncrementsBy(10);
+
+            modelBuilder.HasSequence("expense_hilo")
+                .IncrementsBy(10);
+
+            modelBuilder.HasSequence("income_category_hilo")
+                .IncrementsBy(10);
+
+            modelBuilder.HasSequence("income_hilo")
+                .IncrementsBy(10);
+
+            modelBuilder.HasSequence("shared_expense_hilo")
+                .IncrementsBy(10);
+
             modelBuilder.Entity("DataAccess.Models.Expense", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "expense_hilo");
 
                     b.Property<decimal>("Amount")
                         .HasPrecision(18, 2)
@@ -42,6 +57,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ExpenseCategoryId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ExpenseDate")
@@ -56,7 +72,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Expenses");
+                    b.ToTable("Expense", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.Models.ExpenseCategory", b =>
@@ -65,7 +81,7 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "expense_category_hilo");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -73,7 +89,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExpenseCategories");
+                    b.ToTable("ExpenseCategory", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.Models.Income", b =>
@@ -82,7 +98,7 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "income_hilo");
 
                     b.Property<decimal>("Amount")
                         .HasPrecision(18, 2)
@@ -96,6 +112,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("IncomeCategoryId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -107,7 +124,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Incomes");
+                    b.ToTable("Income", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.Models.IncomeCategory", b =>
@@ -116,7 +133,7 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "income_category_hilo");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -124,7 +141,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("IncomeCategories");
+                    b.ToTable("IncomeCategory", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.Models.SharedExpense", b =>
@@ -133,7 +150,7 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "shared_expense_hilo");
 
                     b.Property<int>("ExpenseId")
                         .HasColumnType("int");
@@ -147,7 +164,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("SharingUserId");
 
-                    b.ToTable("SharedExpenses");
+                    b.ToTable("SharedExpense", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.Models.User", b =>
@@ -171,7 +188,9 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Models.ExpenseCategory", "ExpenseCategory")
                         .WithMany()
-                        .HasForeignKey("ExpenseCategoryId");
+                        .HasForeignKey("ExpenseCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DataAccess.Models.User", "User")
                         .WithMany("UserExpenses")
@@ -188,7 +207,9 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Models.IncomeCategory", "IncomeCategory")
                         .WithMany()
-                        .HasForeignKey("IncomeCategoryId");
+                        .HasForeignKey("IncomeCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DataAccess.Models.User", "User")
                         .WithMany("Incomes")
@@ -212,7 +233,7 @@ namespace DataAccess.Migrations
                     b.HasOne("DataAccess.Models.User", "SharingUser")
                         .WithMany("SharedExpenses")
                         .HasForeignKey("SharingUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Expense");
