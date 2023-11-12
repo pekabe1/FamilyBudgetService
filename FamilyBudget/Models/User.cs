@@ -2,8 +2,8 @@
 
 public class User
 {
-    public int UserId { get; protected set; }
-    public string UserName { get; protected set; }
+    public int UserId { get; set; }
+    public string UserName { get; set; }
 
     // Navigation property for user's own expenses
     public List<Expense> UserExpenses { get; set; }

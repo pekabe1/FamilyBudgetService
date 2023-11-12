@@ -16,7 +16,7 @@ public class IncomeCategoryEntityTypeConfiguration : IEntityTypeConfiguration<In
           .UseHiLo("income_category_hilo")
           .IsRequired();
 
-        builder.Property(ec => ec.Name)
+        builder.Property(ec => ec.CategoryName)
             .IsRequired();
     }
 }
