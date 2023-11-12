@@ -22,6 +22,8 @@ namespace FamilyBudgetService.Api
         public TValue Value { get; }
         public FamilyBudgetServiceError? Error { get; }
 
+        public static implicit operator Result<TValue>(TValue value) => new(value);
+
         public TResult Match<TResult>(
             Func<TValue, TResult> success,
             Func<FamilyBudgetServiceError, TResult> failure) =>

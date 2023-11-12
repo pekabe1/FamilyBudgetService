@@ -1,9 +1,10 @@
 ﻿using FamilyBudgetService.Api.Contracts.v1.Expense;
+using FamilyBudgetService.Api.QueryServices;
 using MediatR;
 
-namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
+namespace FamilyBudgetService.Api.Operations.Queries.Expenses
 {
-    public record ExpenseQuery : CollectionQuery, IRequest<Result<PaginatedList<ExpenseResponse>>>
+    public record GetExpensesQuery : CollectionQuery, IRequest<Result<PaginatedList<ExpenseResponse>>>
     {
         public int? Id { get; set; }
         public string? Description { get; set; }

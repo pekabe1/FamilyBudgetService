@@ -1,10 +1,10 @@
 ﻿using DataAccess;
 using DataAccess.Models;
-using Microsoft.EntityFrameworkCore;
+using FamilyBudgetService.Api.Operations.Queries.Expenses;
 
 namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
 {
-    public class ExpenseQueryService
+    public class ExpenseQueryService : IExpenseQueryService
     {
         private readonly FamilyBudgetDbContext _dbContext;
 
@@ -13,7 +13,7 @@ namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
             _dbContext = dbContext;
         }
 
-        public async Task<List<Expense>> GetExpenses(ExpenseQuery expenseQuery)
+        public async Task<PartialResult<Expense>> GetExpenses(GetExpensesQuery expenseQuery, CancellationToken cancellation = default)
         {
             IQueryable<Expense> query = _dbContext.Expenses;
 
@@ -46,7 +46,10 @@ namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
                 query = query.Where(p => p.Amount >= expenseQuery.MinAmount);
             }
 
-            return await query.ToListAsync();
+            return await PartialResult<Expense>.CreateAsync(query,
+                expenseQuery.Page,
+                expenseQuery.PageSize,
+                cancellation);
         }
     }
 }
