@@ -18,7 +18,12 @@ namespace FamilyBudgetService.Api.Controllers
         protected OkObjectResult Ok<T>(PaginatedList<T> paginatedList)
         {
             return base.Ok(
-                new familybi )
+                new FamilyBudgetServiceCollectionResponse<T>(
+                    Data: paginatedList,
+                    Pagining: new Pagining(paginatedList.Page,
+                    paginatedList.PageSize,
+                    paginatedList.TotalCount,
+                    paginatedList.TotalPages)));
         }
     }
 }

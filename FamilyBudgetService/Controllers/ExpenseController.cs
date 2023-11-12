@@ -1,61 +1,46 @@
-﻿//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.VisualBasic;
-//using System.Security.Claims;
+﻿using FamilyBudgetService.Api.Contracts.v1.Expense;
+using FamilyBudgetService.Api.Controllers;
+using FamilyBudgetService.Api.Filters;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
-//namespace FamilyBudgetService.Controllers
-//{
-//    public class ExpenseController
-//    {
-//        [HttpGet]
-//        public IActionResult GetExpenses()
-//        {
-//            throw new NotImplementedException();
-//        }
+namespace FamilyBudgetService.Controllers
+{
+    [ApiController]
+    [Route("api/v1")]
+    [ApiVersionInResponseHeader("v1")]
+    public class ExpenseController : FamilyBudgetControllerBase
+    {
+        private readonly IMediator _mediator;
 
-//        [HttpGet("{id}")]
-//        public IActionResult GetExpense(int id)
-//        {
-//            throw new NotImplementedException();
-//        }
+        [HttpGet]
+        public IActionResult GetExpenses()
+        {
+            throw new NotImplementedException();
+        }
 
-//        [HttpPost]
-//        public IActionResult CreateExpense([FromBody] Expense expense)
-//        {
-//            throw new NotImplementedException();
-//        }
+        [HttpGet("{id}")]
+        public IActionResult GetExpense(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-//        [HttpPut("{id}")]
-//        public IActionResult UpdateExpense(int id, [FromBody] Expense updatedExpense)
-//        {
-//            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-//            var existingExpense = _dbContext.Expenses.FirstOrDefault(e => e.ExpenseId == id && e.UserId == userId);
+        [HttpPost]
+        public IActionResult CreateExpense([FromBody] CreateExpenseRequest request)
+        {
+            throw new NotImplementedException();
+        }
 
-//            if (existingExpense == null)
-//                return NotFound();
+        [HttpPut("{id}")]
+        public IActionResult UpdateExpense(int id, [FromBody] UpdateExpenseRequest request)
+        {
+            throw new NotImplementedException();
+        }
 
-//            // Update properties based on your model
-//            existingExpense.Description = updatedExpense.Description;
-//            existingExpense.Amount = updatedExpense.Amount;
-//            existingExpense.Date = updatedExpense.Date;
-
-//            _dbContext.SaveChanges();
-
-//            return NoContent();
-//        }
-
-//        [HttpDelete("{id}")]
-//        public IActionResult DeleteExpense(int id)
-//        {
-//            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-//            var expenseToDelete = _dbContext.Expenses.FirstOrDefault(e => e.ExpenseId == id && e.UserId == userId);
-
-//            if (expenseToDelete == null)
-//                return NotFound();
-
-//            _dbContext.Expenses.Remove(expenseToDelete);
-//            _dbContext.SaveChanges();
-
-//            return NoContent();
-//        }
-//    }
-//}
+        [HttpDelete("{id}")]
+        public IActionResult DeleteExpense(int id)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
