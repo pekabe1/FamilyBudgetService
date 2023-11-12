@@ -24,7 +24,7 @@ namespace FamilyBudgetService.Api.Controllers.v1
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateExpenseCategory(int id, [FromBody] ExpenseCategory updatedExpenseCategory)
+        public IActionResult UpdateExpenseCategory(int id, [FromBody] UpdateExpenseCategoryRequest request)
         {
             throw new NotImplementedException();
         }

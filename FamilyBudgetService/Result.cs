@@ -21,5 +21,10 @@ namespace FamilyBudgetService.Api
         public bool IsError { get; }
         public TValue Value { get; }
         public FamilyBudgetServiceError? Error { get; }
+
+        public TResult Match<TResult>(
+            Func<TValue, TResult> success,
+            Func<FamilyBudgetServiceError, TResult> failure) =>
+            !IsError ? success(Value) : failure(Error!);
     }
 }

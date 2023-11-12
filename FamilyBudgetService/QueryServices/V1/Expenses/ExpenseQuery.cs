@@ -1,7 +1,7 @@
 ﻿using FamilyBudgetService.Api.Contracts.v1.Expense;
 using MediatR;
 
-namespace FamilyBudgetService.Api.QueryServices.Expenses
+namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
 {
     public record ExpenseQuery : CollectionQuery, IRequest<Result<PaginatedList<ExpenseResponse>>>
     {

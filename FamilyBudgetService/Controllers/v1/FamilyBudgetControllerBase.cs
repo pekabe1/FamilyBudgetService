@@ -1,4 +1,5 @@
 ﻿using FamilyBudgetService.Api.Contracts;
+using FamilyBudgetService.Api.Errors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FamilyBudgetService.Api.Controllers.v1
@@ -24,6 +25,16 @@ namespace FamilyBudgetService.Api.Controllers.v1
                     paginatedList.PageSize,
                     paginatedList.TotalCount,
                     paginatedList.TotalPages)));
+        }
+
+        protected IActionResult HandleResultError(FamilyBudgetServiceError error) 
+        {
+            return error.ErrorType switch
+            {
+                ErrorType.ValidationFailed => BadRequest(error),// TODO: createClass for error mapping
+                ErrorType.EntityNotFound => NotFound(error),
+                _ => Problem(statusCode: StatusCodes.Status500InternalServerError, title: "Unexpected error")
+            };
         }
     }
 }

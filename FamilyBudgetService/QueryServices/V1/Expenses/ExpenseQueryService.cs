@@ -2,7 +2,7 @@
 using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FamilyBudgetService.Api.QueryServices.Expenses
+namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
 {
     public class ExpenseQueryService
     {

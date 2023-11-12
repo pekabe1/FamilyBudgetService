@@ -1,5 +1,6 @@
 ﻿using FamilyBudgetService.Api.Contracts.v1.Expense;
 using FamilyBudgetService.Api.Filters;
+using FamilyBudgetService.Api.QueryServices.V1.Expenses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +19,15 @@ namespace FamilyBudgetService.Api.Controllers.v1
         }
 
         [HttpGet("expenses")]
-        public IActionResult GetExpensesAsync()
+        public async Task<IActionResult> GetExpensesAsync(GetExpenseRequest request)
         {
-           
+            var query = new ExpenseQuery()
+            {
+                Id = request.ExpenseId
+            };
+
+            var result = await _mediator.Send(query);
+            return result.Match(Ok, HandleResultError);
         }
 
         [HttpGet("expenses/{id}")]
