@@ -1,9 +1,6 @@
 ﻿using DataAccess;
 using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
-using Polly;
-using System;
-using System.Diagnostics.Metrics;
 
 namespace FamilyBudgetService.Api.QueryServices.Expenses
 {
@@ -24,8 +21,32 @@ namespace FamilyBudgetService.Api.QueryServices.Expenses
             {
                 query = query.Where(p => p.Id == expenseQuery.Id);
             }
+            if (string.IsNullOrEmpty(expenseQuery.Description))
+            {
+                query = query.Where(p => p.Description == expenseQuery.Description);
+            }
+            if (expenseQuery.UserId != null)
+            {
+                query = query.Where(p => p.UserId == expenseQuery.UserId);
+            }
+            if (expenseQuery.ExpenseDate != null)
+            {
+                query = query.Where(p => p.ExpenseDate == expenseQuery.ExpenseDate);
+            }
+            if (expenseQuery.Amount != null)
+            {
+                query = query.Where(p => p.Amount == expenseQuery.Amount);
+            }
+            if (expenseQuery.MaxAmount != null)
+            {
+                query = query.Where(p => p.Amount <= expenseQuery.MaxAmount);
+            }
+            if (expenseQuery.MinAmount != null)
+            {
+                query = query.Where(p => p.Amount >= expenseQuery.MinAmount);
+            }
 
-           return await query.ToListAsync();
+            return await query.ToListAsync();
         }
     }
 }

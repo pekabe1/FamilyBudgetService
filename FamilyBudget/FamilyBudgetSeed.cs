@@ -5,11 +5,11 @@ using Polly.Retry;
 
 namespace DataAccess
 {
-    public class FamilyBudgetSeed
+    public class FamilyBudgetSeed 
     {
 
 
-
+        // todo do
         private AsyncRetryPolicy CreatePolicy(ILogger<FamilyBudgetSeed> logger, string prefix, int retries = 3)
         {
             return Policy.Handle<SqlException>().
