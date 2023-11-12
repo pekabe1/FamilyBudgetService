@@ -25,7 +25,7 @@ namespace FamilyBudgetService.Api.Controllers.v1
         [Produces(MediaTypeNames.Application.Json)]
         public async Task<IActionResult> GetExpensesAsync([FromQuery] ExpenseFilteringRequest request)
         {
-            var query = new GetExpensesQuery
+            var query = new CreateExpensesQuery
             {
                 Id = request.ExpenseId
             };
@@ -34,12 +34,24 @@ namespace FamilyBudgetService.Api.Controllers.v1
             return result.Match(Ok, HandleResultError);
         }
 
+        [HttpGet("expenses/{id}")]
+        public async Task<IActionResult> GetExpenseAsync(int id)
+        {
+            var query = new CreateExpensesQuery()
+            {
+                Id = id
+            };
+            var result = await _mediator.Send(query);
+
+            return result.Match(Ok, HandleResultError);
+        }
+
         [HttpGet("expenses/filter")]
         [ProducesResponseType(typeof(FamilyBudgetServiceCollectionResponse<ExpenseResponse>), StatusCodes.Status200OK)]
         [Produces(MediaTypeNames.Application.Json)]
         public async Task<IActionResult> GetFilteredExpensesAsync([FromQuery] ExpenseFilteringRequest request)
         {
-            var query = new GetExpensesQuery
+            var query = new CreateExpensesQuery
             {
                 Id = request.ExpenseId,
                 Description = request.Description,
@@ -54,18 +66,6 @@ namespace FamilyBudgetService.Api.Controllers.v1
             };
 
             var result = await _mediator.Send(query);
-            return result.Match(Ok, HandleResultError);
-        }
-
-        [HttpGet("expenses/{id}")]
-        public async Task<IActionResult> GetExpenseAsync(int id)
-        {
-            var query = new GetExpensesQuery()
-            {
-                Id = id
-            };
-            var result = await _mediator.Send(query);
-
             return result.Match(Ok, HandleResultError);
         }
 

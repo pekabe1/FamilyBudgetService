@@ -6,7 +6,7 @@ namespace FamilyBudgetService.Api.Controllers.v1
     public class ExpenseCategoryController
     {
         [HttpGet]
-        public IActionResult GetExpenseCategories()
+        public IActionResult GetExpenseCategories(GetExpenseCategoryRequest request)
         {
             throw new NotImplementedException();
         }

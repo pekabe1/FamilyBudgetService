@@ -13,7 +13,7 @@ public class ExpenseQueryServiceTests
     public async Task GetExpenses_Should_Return_PartialResult()
     {
         // Arrange
-        var expenseQuery = new GetExpensesQuery
+        var expenseQuery = new CreateExpensesQuery
         {
             Page = 1,
             PageSize = 10,

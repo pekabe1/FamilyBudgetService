@@ -5,16 +5,16 @@ using MediatR;
 
 namespace FamilyBudgetService.Api.Operations.Queries.Expenses
 {
-    public class GetExpenseHandler : IRequestHandler<GetExpensesQuery, Result<PaginatedList<ExpenseResponse>>>
+    public class CreateExpenseHandler : IRequestHandler<CreateExpensesQuery, Result<PaginatedList<ExpenseResponse>>>
     {
         private readonly IExpenseQueryService _expenseQueryService;
         
-        public GetExpenseHandler(IExpenseQueryService expenseQueryService)
+        public CreateExpenseHandler(IExpenseQueryService expenseQueryService)
         {
             _expenseQueryService = expenseQueryService;
         }
 
-        public async Task<Result<PaginatedList<ExpenseResponse>>> Handle(GetExpensesQuery request, CancellationToken cancellationToken)
+        public async Task<Result<PaginatedList<ExpenseResponse>>> Handle(CreateExpensesQuery request, CancellationToken cancellationToken)
         {
             var expenses = await _expenseQueryService.GetExpenses(request, cancellationToken);
 

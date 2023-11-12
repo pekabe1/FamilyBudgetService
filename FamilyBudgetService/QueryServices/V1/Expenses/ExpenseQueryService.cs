@@ -3,7 +3,7 @@ using DataAccess.Models;
 using FamilyBudgetService.Api.Operations.Queries.Expenses;
 using Microsoft.EntityFrameworkCore;
 
-namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
+namespace FamilyBudgetService.Api.QueryServices.v1.Expenses
 {
     public class ExpenseQueryService : IExpenseQueryService
     {
@@ -14,7 +14,7 @@ namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
             _dbContext = dbContext;
         }
 
-        public async Task<PartialResult<Expense>> GetExpenses(GetExpensesQuery expenseQuery, CancellationToken cancellation = default)
+        public async Task<PartialResult<Expense>> GetExpensesAsync(CreateExpensesQuery expenseQuery, CancellationToken cancellation = default)
         {
             IQueryable<Expense> query = _dbContext.Expenses;
 
