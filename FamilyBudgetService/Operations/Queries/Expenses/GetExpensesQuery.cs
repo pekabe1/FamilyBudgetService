@@ -14,5 +14,6 @@ namespace FamilyBudgetService.Api.Operations.Queries.Expenses
         public DateTime? ExpenseDate { get; set; }
         public int? ExpenseCategoryId { get; set; }
         public int? UserId { get; set; }
+        public bool FetchFullData { get; set; } = true;
     }
 }

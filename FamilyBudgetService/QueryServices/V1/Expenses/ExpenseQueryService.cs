@@ -16,9 +16,14 @@ namespace FamilyBudgetService.Api.QueryServices.V1.Expenses
 
         public async Task<PartialResult<Expense>> GetExpenses(GetExpensesQuery expenseQuery, CancellationToken cancellation = default)
         {
-            IQueryable<Expense> query = _dbContext.Expenses
-                .Include(i => i.User)
-                .Include(i=> i.ExpenseCategory);// TODO: Should I restrict data to non nested subscolections ?
+            IQueryable<Expense> query = _dbContext.Expenses;
+
+            if (expenseQuery.FetchFullData)
+            {
+                query
+                    .Include(i => i.User)
+                    .Include(i => i.ExpenseCategory);
+            } 
 
             if (expenseQuery.Id != null)
             {

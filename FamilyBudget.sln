@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyBudgetService.Api", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessTests", "DataAccessTests\DataAccessTests.csproj", "{F59BE6E8-9D27-434B-8CD3-7124B0BA4466}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyBudgetServiceTests", "FamilyBudgetServiceTests\FamilyBudgetServiceTests.csproj", "{F216B5BD-860D-4C27-A766-A6897944B871}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyBudgetService.Api.Tests", "FamilyBudgetServiceTests\FamilyBudgetService.Api.Tests.csproj", "{F216B5BD-860D-4C27-A766-A6897944B871}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

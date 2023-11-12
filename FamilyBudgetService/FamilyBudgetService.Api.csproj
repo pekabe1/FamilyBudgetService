@@ -12,15 +12,18 @@
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="6.0.23" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
+    <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Operations\Commands\" />
+    <ProjectReference Include="..\FamilyBudget\DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FamilyBudget\DataAccess.csproj" />
+    <Folder Include="Operations\Commands\Expenses\Create\" />
+    <Folder Include="Operations\Commands\Expenses\Delete\" />
+    <Folder Include="Operations\Commands\Expenses\Update\" />
   </ItemGroup>
 
 </Project>
