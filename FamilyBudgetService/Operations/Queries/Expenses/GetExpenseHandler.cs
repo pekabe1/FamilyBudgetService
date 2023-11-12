@@ -5,7 +5,7 @@ using MediatR;
 
 namespace FamilyBudgetService.Api.Operations.Queries.Expenses
 {
-    public class CreateExpenseHandler : IRequestHandler<CreateExpensesQuery, Result<PaginatedList<ExpenseResponse>>>
+    public class CreateExpenseHandler : IRequestHandler<GetExpensesQuery, Result<PaginatedList<ExpenseResponse>>>
     {
         private readonly IExpenseQueryService _expenseQueryService;
 
@@ -14,7 +14,7 @@ namespace FamilyBudgetService.Api.Operations.Queries.Expenses
             _expenseQueryService = expenseQueryService;
         }
 
-        public async Task<Result<PaginatedList<ExpenseResponse>>> Handle(CreateExpensesQuery request, CancellationToken cancellationToken)
+        public async Task<Result<PaginatedList<ExpenseResponse>>> Handle(GetExpensesQuery request, CancellationToken cancellationToken)
         {
             var expenses = await _expenseQueryService.GetExpensesAsync(request, cancellationToken);
 

@@ -13,7 +13,7 @@ public class ExpenseQueryServiceTests
     public async Task GetExpenses_Should_Return_PartialResult()
     {
         // Arrange
-        var expenseQuery = new CreateExpensesQuery
+        var expenseQuery = new GetExpensesQuery
         {
             Page = 1,
             PageSize = 10,
@@ -27,7 +27,6 @@ public class ExpenseQueryServiceTests
         var dbContextMock = new Mock<FamilyBudgetDbContext>(options);
         var expenseQueryService = new ExpenseQueryService(dbContextMock.Object);
 
-        // Insert seed data into the database using one instance of the context
         using (var context = new FamilyBudgetDbContext(options))
         {
             context.Expenses.Add(new Expense { Id = 1, ExpenseCategoryId = 1,Amount = 50m, Description = "t1", UserId = 1 });
@@ -43,6 +42,5 @@ public class ExpenseQueryServiceTests
         Assert.That(result.TotalCount, Is.EqualTo(2));
         Assert.That(result.PageSize, Is.EqualTo(expenseQuery.PageSize));
         Assert.That(result.Page, Is.EqualTo(expenseQuery.Page));
-        // Add more assertions based on your expectations for the query result
     }
 }

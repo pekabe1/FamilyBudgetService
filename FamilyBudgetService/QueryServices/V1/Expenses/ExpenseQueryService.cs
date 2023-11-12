@@ -14,7 +14,7 @@ namespace FamilyBudgetService.Api.QueryServices.v1.Expenses
             _dbContext = dbContext;
         }
 
-        public async Task<PartialResult<Expense>> GetExpensesAsync(CreateExpensesQuery expenseQuery, CancellationToken cancellation = default)
+        public async Task<PartialResult<Expense>> GetExpensesAsync(GetExpensesQuery expenseQuery, CancellationToken cancellation = default)
         {
             IQueryable<Expense> query = _dbContext.Expenses;
 

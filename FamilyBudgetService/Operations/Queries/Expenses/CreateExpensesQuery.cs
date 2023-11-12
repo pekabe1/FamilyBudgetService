@@ -4,7 +4,7 @@ using MediatR;
 
 namespace FamilyBudgetService.Api.Operations.Queries.Expenses
 {
-    public record CreateExpensesQuery : CollectionQuery, IRequest<Result<PaginatedList<ExpenseResponse>>>
+    public record GetExpensesQuery : CollectionQuery, IRequest<Result<PaginatedList<ExpenseResponse>>>
     {
         public int? Id { get; set; }
         public string? Description { get; set; }

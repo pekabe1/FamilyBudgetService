@@ -3,11 +3,13 @@ using FamilyBudgetService.Api.Contracts.v1.Expense;
 using FamilyBudgetService.Api.Filters;
 using FamilyBudgetService.Api.Operations.Queries.Expenses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
 namespace FamilyBudgetService.Api.Controllers.v1
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1")]
     [ApiVersionInResponseHeader("v1")]
@@ -25,7 +27,7 @@ namespace FamilyBudgetService.Api.Controllers.v1
         [Produces(MediaTypeNames.Application.Json)]
         public async Task<IActionResult> GetExpensesAsync([FromQuery] ExpenseFilteringRequest request)
         {
-            var query = new CreateExpensesQuery
+            var query = new GetExpensesQuery
             {
                 Id = request.ExpenseId
             };
@@ -37,7 +39,7 @@ namespace FamilyBudgetService.Api.Controllers.v1
         [HttpGet("expenses/{id}")]
         public async Task<IActionResult> GetExpenseAsync(int id)
         {
-            var query = new CreateExpensesQuery()
+            var query = new GetExpensesQuery()
             {
                 Id = id
             };
@@ -51,7 +53,7 @@ namespace FamilyBudgetService.Api.Controllers.v1
         [Produces(MediaTypeNames.Application.Json)]
         public async Task<IActionResult> GetFilteredExpensesAsync([FromQuery] ExpenseFilteringRequest request)
         {
-            var query = new CreateExpensesQuery
+            var query = new GetExpensesQuery
             {
                 Id = request.ExpenseId,
                 Description = request.Description,
