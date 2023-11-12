@@ -1,10 +1,9 @@
 ﻿using FamilyBudgetService.Api.Contracts.v1.Expense;
-using FamilyBudgetService.Api.Controllers;
 using FamilyBudgetService.Api.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FamilyBudgetService.Controllers
+namespace FamilyBudgetService.Api.Controllers.v1
 {
     [ApiController]
     [Route("api/v1")]
@@ -13,14 +12,19 @@ namespace FamilyBudgetService.Controllers
     {
         private readonly IMediator _mediator;
 
-        [HttpGet]
-        public IActionResult GetExpenses()
+        public ExpenseController(IMediator mediator)
         {
-            throw new NotImplementedException();
+            _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetExpense(int id)
+        [HttpGet("expenses")]
+        public IActionResult GetExpensesAsync()
+        {
+           
+        }
+
+        [HttpGet("expenses/{id}")]
+        public IActionResult GetExpenseAsync(int id)
         {
             throw new NotImplementedException();
         }

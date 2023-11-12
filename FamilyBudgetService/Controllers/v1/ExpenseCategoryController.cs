@@ -1,7 +1,7 @@
 ﻿using FamilyBudgetService.Api.Contracts.v1.ExpenseCategory;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FamilyBudgetService.Api.Controllers
+namespace FamilyBudgetService.Api.Controllers.v1
 {
     public class ExpenseCategoryController
     {

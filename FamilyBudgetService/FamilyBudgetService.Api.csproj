@@ -15,4 +15,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Operations\Commands\" />
+    <Folder Include="Operations\Queries\Expenses\NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FamilyBudget\DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
