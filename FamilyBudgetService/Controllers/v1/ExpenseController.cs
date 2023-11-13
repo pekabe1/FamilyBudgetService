@@ -26,11 +26,10 @@ namespace FamilyBudgetService.Api.Controllers.v1
         [HttpGet("expenses")]
         [ProducesResponseType(typeof(FamilyBudgetServiceCollectionResponse<ExpenseResponse>), StatusCodes.Status200OK)]
         [Produces(MediaTypeNames.Application.Json)]
-        public async Task<IActionResult> GetExpensesAsync([FromQuery] GetExpenseRequest request)
+        public async Task<IActionResult> GetExpensesAsync()
         {
             var query = new GetExpensesQuery
-            {
-                Id = request.ExpenseId
+            {        
             };
 
             var result = await _mediator.Send(query);
