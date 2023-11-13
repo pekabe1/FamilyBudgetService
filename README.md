@@ -24,8 +24,9 @@ You can start LocalDB by running the following command:
 sqllocaldb s MSSQLLocalDB
 If LocalDB is not running, this command will start it.
 
+Designing the project I wanted to separate the value of communication with the database from the service, the use of CQRS and the planned addition of the eventBus is to allow for a relatively easy transition to a microservices architecture if necessary (or continuation of the project as a modular monolith).
 
-Database containerization, needs to be added in next comits
+
 
 
 
