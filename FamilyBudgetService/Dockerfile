@@ -10,6 +10,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
+COPY "FamilyBudget.sln" "FamilyBudget.sln"
 COPY ["FamilyBudgetService/FamilyBudgetService.csproj", "FamilyBudgetService/"]
 COPY ["FamilyBudgetService/DataAccess.csproj", "DataAccess/"]
 RUN dotnet restore "FamilyBudgetService/DataAccess.csproj"
